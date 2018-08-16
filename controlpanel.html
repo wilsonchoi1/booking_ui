@@ -1,0 +1,575 @@
+<!DOCTYPE html> 
+<html>  
+  <head>
+    <title>Golf score keeper</title>
+    <link rel="stylesheet" href="css/reset.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.3.5/jquery.timepicker.min.css" />
+	<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/custom.css" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/vis.min.css" crossorigin="anonymous">
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="js/modernizr.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-timepicker/1.3.5/jquery.timepicker.min.js"></script>
+	<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<!-- script src="js/main.js"></script-->
+	<script src="js/vis.min.js"></script>
+	<script src="js/moment-with-locales.js"></script>
+  </head>
+  <body>
+  	<div id="currentTime">
+  	</div>
+  	<div id="currentEvent">
+  		<div id="eventSubject"></div>
+  		<div id="eventSchedule"></div>
+  		<div id="eventOrganizer"></div>	
+  		<div id="eventAttendee"></div>	
+  	</div>
+  	<div class="progress" id="progress">
+	  <div id="meetingProgress" class="progress-bar" role="progressbar" aria-valuenow="70"
+	  aria-valuemin="0" aria-valuemax="100" style="width:70%">
+	    <span class="sr-only">70% Complete</span>
+	  </div>
+	</div>
+  	
+  	<!-- div id="events">
+  		Testing Page
+  	</div-->
+  	
+  	<div id="visualization"></div>
+
+	<script type="text/javascript">
+	  // DOM element where the Timeline will be attached
+	  
+	</script>
+  	
+  	<!-- div class="cd-schedule loading">
+  	
+  		
+  		
+		<div class="timeline">
+			<ul>
+				<li><span>09:00</span></li>
+				<li><span>09:30</span></li>
+				<li><span>10:00</span></li>
+				<li><span>10:30</span></li>
+				<li><span>11:00</span></li>
+				<li><span>11:30</span></li>
+				<li><span>12:00</span></li>
+				<li><span>12:30</span></li>
+				<li><span>13:00</span></li>
+				<li><span>13:30</span></li>
+				<li><span>14:00</span></li>
+				<li><span>14:30</span></li>
+				<li><span>15:00</span></li>
+				<li><span>15:30</span></li>
+				<li><span>16:00</span></li>
+				<li><span>16:30</span></li>
+				<li><span>17:00</span></li>
+				<li><span>17:30</span></li>
+				<li><span>18:00</span></li>
+			</ul>
+		</div--> <!-- .timeline -->
+	
+		<!-- div class="events">
+			<ul>
+				<li class="events-group">
+					<div class="top-info"><span>Monday</span></div>
+	
+					<ul>
+						<li class="single-event" data-start="09:30" data-end="10:30" data-content="event-abs-circuit" data-event="event-1">
+							<a href="#0">
+								<em class="event-name">Abs Circuit</em>
+							</a>
+						</li>
+	
+						<li class="single-event" data-start="11:00" data-end="12:30" data-content="event-rowing-workout" data-event="event-2">
+							<a href="#0">
+								<em class="event-name">Rowing Workout</em>
+							</a>
+						</li>
+	
+						<li class="single-event" data-start="14:00" data-end="15:15"  data-content="event-yoga-1" data-event="event-3">
+							<a href="#0">
+								<em class="event-name">Yoga Level 1</em>
+							</a>
+						</li>
+					</ul>
+				</li>
+	
+				<li class="events-group">
+					<div class="top-info"><span>Tuesday</span></div>
+	
+					<ul>
+						<li class="single-event" data-start="10:00" data-end="11:00"  data-content="event-rowing-workout" data-event="event-2">
+							<a href="#0">
+								<em class="event-name">Rowing Workout</em>
+							</a>
+						</li>
+	
+						<li class="single-event" data-start="11:30" data-end="13:00"  data-content="event-restorative-yoga" data-event="event-4">
+							<a href="#0">
+								<em class="event-name">Restorative Yoga</em>
+							</a>
+						</li>
+	
+						<li class="single-event" data-start="13:30" data-end="15:00" data-content="event-abs-circuit" data-event="event-1">
+							<a href="#0">
+								<em class="event-name">Abs Circuit</em>
+							</a>
+						</li>
+	
+						<li class="single-event" data-start="15:45" data-end="16:45"  data-content="event-yoga-1" data-event="event-3">
+							<a href="#0">
+								<em class="event-name">Yoga Level 1</em>
+							</a>
+						</li>
+					</ul>
+				</li>
+	
+				<li class="events-group">
+					<div class="top-info"><span>Wednesday</span></div>
+	
+					<ul>
+						<li class="single-event" data-start="09:00" data-end="10:15" data-content="event-restorative-yoga" data-event="event-4">
+							<a href="#0">
+								<em class="event-name">Restorative Yoga</em>
+							</a>
+						</li>
+	
+						<li class="single-event" data-start="10:45" data-end="11:45" data-content="event-yoga-1" data-event="event-3">
+							<a href="#0">
+								<em class="event-name">Yoga Level 1</em>
+							</a>
+						</li>
+	
+						<li class="single-event" data-start="12:00" data-end="13:45"  data-content="event-rowing-workout" data-event="event-2">
+							<a href="#0">
+								<em class="event-name">Rowing Workout</em>
+							</a>
+						</li>
+	
+						<li class="single-event" data-start="13:45" data-end="15:00" data-content="event-yoga-1" data-event="event-3">
+							<a href="#0">
+								<em class="event-name">Yoga Level 1</em>
+							</a>
+						</li>
+					</ul>
+				</li>
+	
+				<li class="events-group">
+					<div class="top-info"><span>Thursday</span></div>
+	
+					<ul>
+						<li class="single-event" data-start="09:30" data-end="10:30" data-content="event-abs-circuit" data-event="event-1">
+							<a href="#0">
+								<em class="event-name">Abs Circuit</em>
+							</a>
+						</li>
+	
+						<li class="single-event" data-start="12:00" data-end="13:45" data-content="event-restorative-yoga" data-event="event-4">
+							<a href="#0">
+								<em class="event-name">Restorative Yoga</em>
+							</a>
+						</li>
+	
+						<li class="single-event" data-start="15:30" data-end="16:30" data-content="event-abs-circuit" data-event="event-1">
+							<a href="#0">
+								<em class="event-name">Abs Circuit</em>
+							</a>
+						</li>
+	
+						<li class="single-event" data-start="17:00" data-end="18:30"  data-content="event-rowing-workout" data-event="event-2">
+							<a href="#0">
+								<em class="event-name">Rowing Workout</em>
+							</a>
+						</li>
+					</ul>
+				</li>
+	
+				<li class="events-group">
+					<div class="top-info"><span>Friday</span></div>
+	
+					<ul>
+						<li class="single-event" data-start="10:00" data-end="11:00"  data-content="event-rowing-workout" data-event="event-2">
+							<a href="#0">
+								<em class="event-name">Rowing Workout</em>
+							</a>
+						</li>
+	
+						<li class="single-event" data-start="12:30" data-end="14:00" data-content="event-abs-circuit" data-event="event-1">
+							<a href="#0">
+								<em class="event-name">Abs Circuit</em>
+							</a>
+						</li>
+	
+						<li class="single-event" data-start="15:45" data-end="16:45"  data-content="event-yoga-1" data-event="event-3">
+							<a href="#0">
+								<em class="event-name">Yoga Level 1</em>
+							</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	
+		<div class="event-modal">
+			<header class="header">
+				<div class="content">
+					<span class="event-date"></span>
+					<h3 class="event-name"></h3>
+				</div>
+	
+				<div class="header-bg"></div>
+			</header>
+	
+			<div class="body">
+				<div class="event-info"></div>
+				<div class="body-bg"></div>
+			</div>
+	
+			<a href="#0" class="close">Close</a>
+		</div>
+	
+		<div class="cover-layer"></div-->
+	</div>
+
+  	<div id="buttonBar">
+  		<button id="checkInBtn">Check in</button>
+  		<button id="checkOutBtn">Check out</button>
+  		<button id="extendBtn">Extend</button>
+  	</div>
+  	<div id="dialog" title="Create new event">
+	  <label for="start_ts" class="dialog_input_lbl">Start</label>
+	  <input class="timepicker" id="start_ts" name="start_ts" /><br>
+	  <label for="end_ts" class="dialog_input_lbl">End</label>
+	  <input class="timepicker" id="end_ts" name="end_ts" /><br>
+	</div>
+	<div id="extend_dialog" title="Extend event">
+	  <select name="extend_int" id="extend_int">
+	  	<option value="15">15</option>
+	  	<option value="30">30</option>
+	  	<option value="45">45</option>
+	  	<option value="60">60</option>
+	  </select>
+	  <span>Minutes</span><br>
+	  <input type="hidden" id="extend_event_id" value=""/>
+	</div>
+	<input id="min_tp" type="hidden" value="7:00 AM"/>
+
+  	<script language="javascript" type="text/javascript">
+  	
+  	var container = document.getElementById('visualization');
+	
+  	var timeline;
+  	
+  	var nextRequest;
+  	
+  	
+  	
+	  // Create a DataSet (allows two way data-binding)
+	/*	  var items = new vis.DataSet([
+		    {id: 1, content: 'item 1', start: new Date(2018, 7, 6, 9, 0), end: new Date(2018, 7, 6, 10, 0), title: 'meeting 1'},
+		    {id: 2, content: 'item 2', start: new Date(2018, 7, 6, 10, 0), end: new Date(2018, 7, 6, 11, 0), title: 'meeting 2'},
+		  ]);
+		
+		  // Configuration for the Timeline
+		  var options = {start: new Date(2018, 7, 6, 8, 0), end: new Date(2018, 7, 6, 19, 0), 
+				  horizontalScroll: false, zoomable: false, stack: false, 
+				  showCurrentTime: true,
+				  itemAlwaysDraggable: false,
+				  moveable: false,
+				  showMajorLabels: false,
+				  timeAxis: {scale: 'minute', step: 30}
+	
+				  };
+		  
+		
+		  // Create a Timeline
+		  var timeline = new vis.Timeline(container, items, options);*/
+		  
+		var checkInBtn = $('#checkInBtn');
+		var checkOutBtn = $('#checkOutBtn');
+		var extendBtn = $('#extendBtn');
+		$("div#dialog").dialog({ 
+			autoOpen: false,
+			buttons: {
+                Create:{ 
+                    class: 'leftButton',
+                    text: 'Create',
+                    click : function (){
+                    	console.log("start:"+$('#start_ts').timepicker('getTime'));
+                    	console.log("end:"+$('#end_ts').timepicker('getTime'));
+                    	console.log("start utc"+moment($('#start_ts').timepicker('getTime')).utc().format('YYYY-MM-DD HH:mm:ss'));
+                        alert('create event');
+                        /*$.ajax({
+  	        				url: "/api/room/rooma@lohaspark.onmicrosoft.com/events,
+  	        				method: 'POST',
+  	        				data: {
+  	        					subject: 'Adhoc Event',
+  	        					organizer: 
+  	        						{
+  	        							emailAddress:
+  	        						},
+  	        					start: {
+  	        						dateTime: moment($('#start_ts').timepicker('getTime')).utc().format('YYYY-MM-DD HH:mm:ss'),
+  	        						timeZone: 'UTC'
+  	        					},
+  	        					end: {
+  	        						dateTime: moment($('#start_ts').timepicker('getTime')).utc().format('YYYY-MM-DD HH:mm:ss'),
+  	        						timeZone: 'UTC'
+  	        					},
+  	        				},
+  	        				success: 
+  	        		  	        function(result){
+  	        						clearTimeout(nextRequest);
+  	        						sendRequest();
+  	        						console.log('createEvent Success');
+  	        					},
+  	        				error:
+  	        					function(result){
+  	        						checkOutBtn.prop( "disabled", false );
+  	        						console.log('createEvent Fail');
+  	        					},
+  	        				});*/
+                    }
+                },
+                Close: function () {
+                    $(this).dialog("close");
+                }
+            }
+		});
+		$("div#extend_dialog").dialog({ 
+			autoOpen: false,
+			buttons: {
+                Extend:{ 
+                    class: 'leftButton',
+                    text: 'Extend',
+                    click : function (){
+                    	console.log(this); 
+                    	//$(this).dialog('extend_dialog').find('button:last').prop('disabled', true);
+                    	//alert('extend event');
+                    	var minutes = $('#extend_int').val();
+                    	var eventId = $('#extend_event_id').val();
+                    	console.log("extend minutes="+minutes);
+                    	$(".ui-dialog-buttonpane button:contains('Extend')")
+                        .attr("disabled", true);
+                        $.ajax({
+  	        				url: "/api/room/rooma@lohaspark.onmicrosoft.com/events/"+eventId+"/extend/"+minutes,
+  	        				method: 'PATCH',
+  	        				success: 
+  	        		  	        function(result){
+  	        						clearTimeout(nextRequest);
+  	        						sendRequest();
+  	        						console.log('checkOut Success');
+  	        					},
+  	        				error:
+  	        					function(result){
+  	        						checkOutBtn.prop( "disabled", false );
+  	        						console.log('checkOut Fail');
+  	        					},
+  	        				});
+  	        			
+  	        			
+                    }
+                },
+                Close: function () {
+                    $(this).dialog("close");
+                }
+            },
+            open: function(){
+            	//console.log("open dialog");
+            	$(".ui-dialog-buttonpane button:contains('Extend')")
+                .attr("disabled", false);	
+    		}
+		});
+		
+	  	
+	  	function sendRequest(){
+	  	    $.ajax({
+	  	        url: "/api/room/rooma@lohaspark.onmicrosoft.com/eventpanel",
+	  	        success: 
+	  	        function(result){
+	  	        	console.log(result);
+	  	        	var data = result.data;
+	  	        	$('#currentTime').html('<span>'+data.currentTime+'</span>');
+	  	        	var progressDiv = $('#progress');
+	  	        	if (data.currentEvent){
+	  	        		progressDiv.show();
+	  	        		var progressBar = $('#meetingProgress');
+		  	        	$('#eventSubject').html('<span>'+data.currentEvent.subject+'</span>'); //insert text of test.php into your div
+	  	        		$('#eventSchedule').html('<span>'+data.currentEvent.startTime+' - '+data.currentEvent.endTime+'</span>'); //insert text of test.php into your div
+	  	        		$('#eventOrganizer').html('<span>'+data.currentEvent.organizerName+'</span>'); //insert text of test.php into your div
+	  	        		//$('#eventAttendee').html('<span>'+JSON.stringify(data.currentEvent.attendee)+'</span>'); //insert text of test.php into your div
+		  	        	//console.log(progressBar);
+	  	        		progressBar.attr('aria-valuenow', data.currentEventProgressPercentage);
+	  	        		progressBar.width(data.currentEventProgressPercentage+'%');
+	  	        		
+	  	        		console.log(data.currentEvent.status);
+	  	        		if (data.currentEvent.status == 'CHECKIN'){
+	  	        			checkInBtn.prop( "disabled", true );
+		  	        		checkInBtn.unbind('click');
+		  	        		checkOutBtn.prop( "disabled", false );
+		  	        		checkOutBtn.on('click', function() {
+		  	        			checkOutBtn.prop( "disabled", true );
+		  	        			$.ajax({
+		  	        				url: "/api/room/rooma@lohaspark.onmicrosoft.com/events/"+data.currentEvent.id+"/checkout",
+		  	        				method: 'PATCH',
+		  	        				success: 
+		  	        		  	        function(result){
+		  	        						clearTimeout(nextRequest);
+		  	        						sendRequest();
+		  	        						console.log('checkOut Success');
+		  	        					},
+		  	        				error:
+		  	        					function(result){
+		  	        						checkOutBtn.prop( "disabled", false );
+		  	        						console.log('checkOut Fail');
+		  	        					},
+		  	        				});
+		  	        			
+			  	      		});
+		  	        		extendBtn.prop( "disabled", false );
+		  	        		extendBtn.on('click', function() {
+		  	        			//extendBtn.prop( "disabled", true );
+		  	        			$("#.ui-dialog-buttonpane button:contains('Extend')")
+                        			.attr("disabled", false);
+		  	        			$("div#extend_dialog").dialog (
+	  	        						{ autoOpen: true }
+	  	        				);
+		  	        		});
+	  	        		} else {
+	  	        			checkOutBtn.prop( "disabled", true );
+		  	        		checkOutBtn.unbind('click');
+	  	        			checkInBtn.prop( "disabled", false );	
+	  	        			checkInBtn.on('click', function() {
+	  	        				checkInBtn.prop( "disabled", true );
+		  	        			$.ajax({
+		  	        				url: "/api/room/rooma@lohaspark.onmicrosoft.com/events/"+data.currentEvent.id+"/checkin",
+		  	        				method: 'PATCH',
+		  	        				success: 
+		  	        		  	        function(result){
+			  	        					clearTimeout(nextRequest);
+		  	        						sendRequest();
+			  	        					checkInBtn.prop( "disabled", true );
+			  			  	        		checkInBtn.unbind('click');
+		  	        						console.log('checkIn Success');
+		  	        					},
+		  	        				error:
+		  	        					function(result){
+		  	        						checkInBtn.prop( "disabled", false );
+		  	        						console.log('checkIn Fail');
+		  	        					},
+		  	        				});
+		  	        			
+			  	      		});
+	  	        		}
+	  	        		
+	  	        		
+	  	        		
+	  	        	} else {
+	  	        		$('#currentEvent').html('<span>Available</span>');
+	  	        		progressDiv.hide();
+	  	        		checkInBtn.prop( "disabled", true );
+	  	        		checkInBtn.unbind('click');
+	  	        		checkOutBtn.prop( "disabled", true );
+	  	        		checkOutBtn.unbind('click');
+	  	        		extendBtn.prop( "disabled", true );
+	  	        		extendBtn.unbind('click');
+	  	        	}
+	  	        	if (data.events){
+	  	        		var dailyEvents = [];
+  	        			for (var i=0;i<data.events.length;i++){
+	  	        			console.log('event'+i+":"+data.events[i]);
+	  	        			dailyEvents.push({id:data.events[i].id, content:data.events[i].subject, 
+	  	        				start: moment(data.events[i].startTime), end: moment(data.events[i].endTime), 
+	  	        				title: data.events[i].subject+"<br/>"+data.events[i].organizerName
+	  	        				});
+	  	        		}
+	  	        		var options = {
+	  	        			//start: new Date(2018, 7, 6, 8, 0), 
+	  	        			//end: new Date(2018, 7, 6, 19, 0), 
+	  	        			start: moment(data.startTime),
+	  	        			end: moment(data.endTime),
+	  	        			  horizontalScroll: false, zoomable: false, stack: false, 
+	  	    				  showCurrentTime: true,
+	  	    				  itemsAlwaysDraggable: false,
+	  	    				  moveable: false,
+	  	    				  showMajorLabels: false,
+	  	    				  timeAxis: {scale: 'minute', step: 30}
+	  	    	
+	  	    				  };
+	  	        		console.log(options);
+	  	        		console.log(dailyEvents);
+	  	        		if (timeline){
+	  	        			timeline.setOptions(options);	
+	  	        			var items = new vis.DataSet(dailyEvents);
+	  	        			timeline.setData({
+	  	        			  items: items
+	  	        			})
+		  	        	} else {
+	  	        			var items = new vis.DataSet(dailyEvents);
+	  	        			timeline = new vis.Timeline(container, items, options);		
+	  	        			timeline.on('click', function (event) {	
+	  	        			  //console.log(event.time.getTime());
+	  	        			  //console.log(timeline.getCurrentTime().getTime());
+	  	        			  console.log(event);
+	  	        			  if (event.item !== null){
+	  	        				//var props = timeline.getEventProperties(event);
+		  	        			//  console.log(props);
+		  	        			$('#extend_event_id').val(event.item);
+	  	        				$("div#extend_dialog").dialog (
+	  	        						{ autoOpen: true }
+	  	        				);
+	  	        			  } else if (timeline.getCurrentTime().getTime() < event.time.getTime()){
+	  	        				  // click on empty schedule
+	  	        				var now = timeline.getCurrentTime();
+	  	        				console.log("click time="+now);
+								var mins = now.getMinutes();
+								var quarterHours = Math.ceil(mins/15);
+								if (quarterHours == 4)
+								{
+								    now.setHours(now.getHours()+1);
+								}
+								var rounded = (quarterHours*15)%60;
+								now.setMinutes(rounded);
+								console.log(moment(now).format("LT"));
+								$('#min_tp').val(moment(now).format("LT"));
+								$('input.timepicker').timepicker({
+							  		'timeFormat': 'g:i A',
+							  		'minTime': moment(now).format("LT"), 
+							  		'maxTime': '12:00 AM',
+							  		'step': 15,
+							  	});
+	  	        				$("div#dialog").dialog (
+	  	        						{ autoOpen: true }
+	  	        				);
+	  	        			  }
+	  	        			  
+	  	        			});
+	  	        		}
+	  	        	}
+	  	        	//$('#events').html('<span>'+JSON.stringify(data.events)+'</span>'); //insert text of test.php into your div
+	  	            nextRequest = setTimeout(function(){
+	  	            	try {
+	  	            		sendRequest(); //this will send request again and again;
+	  	            	} catch(err) {
+	  	            	}
+	  	            }, data.nextInterval*1000);
+	  	        }
+	  	    });
+	  	}
+	  	
+	  	
+	  	sendRequest();
+	  	
+	  	
+	</script>
+	
+	
+  </body>
+</html> 
